@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat Portal</title>
+    <!-- Include Socket.io client library -->
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- PASSCODE SCREEN -->
+        <div id="auth-screen">
+            <h2>🔒 Restricted Access</h2>
+            <p>Please enter the passcode to open the chat portal.</p>
+            <input type="password" id="passcode-input" placeholder="Enter Passcode" maxlength="4">
+            <br>
+            <button class="btn" onclick="verifyPasscode()">Enter Portal</button>
+            <div id="error-message" class="error-msg"></div>
+        </div>
+
+        <!-- DASHBOARD & CHAT SCREEN -->
+        <div id="dashboard-screen" class="hidden">
+            <h2>Dashboard</h2>
+            
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 6px;">Quick Sent Buttons:</div>
+            <div class="quick-buttons">
+                <button class="quick-btn" onclick="sendQuickMessage('Im here po sa kama')">Im here po sa kama</button>
+                <button class="quick-btn" onclick="sendQuickMessage('punta po ako sa sala')">punta po ako sa sala</button>
+                <button class="quick-btn" onclick="sendQuickMessage('Andito po sila')">Andito po sila</button>
+                <button class="quick-btn" onclick="sendQuickMessage('Kuha lang me food')">Kuha lang me food</button>
+                <button class="quick-btn special" onclick="sendQuickMessage('I MISS YOUUU SO MUCH (Special)')">I MISS YOUUU SO MUCH (Special)</button>
+            </div>
+
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 6px;">Live Chat:</div>
+            <div class="status-bar" id="connection-status">Connecting to server...</div>
+            
+            <div class="chat-box" id="chat-messages">
+                <div style="color: #9ca3af; text-align: center; margin: auto;">Loading messages...</div>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="message-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+                <button class="btn" onclick="sendCustomMessage()">Send Message</button>
+            </div>
+
+            <div class="footer-actions">
+                <button class="btn sign-out-btn" onclick="signOut()">Sign Out</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
